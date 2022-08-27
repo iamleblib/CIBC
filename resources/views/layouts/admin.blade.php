@@ -12,6 +12,12 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
 
+    <!-- DataTables -->
+    <link href="{{ asset('backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{{ asset('backend/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- plugin css -->
     <link href="{{ asset('backend/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css"') }} rel="stylesheet" type="text/css" />
 
@@ -24,7 +30,6 @@
     <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-
 </head>
 
 <body>
@@ -293,9 +298,16 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('home') }}">
+                        <a href="{{ route('roles.index') }}">
                             <i data-feather="home"></i>
-                            <span data-key="t-dashboard">Manage Profile</span>
+                            <span data-key="t-dashboard">Roles</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('roles.index') }}">
+                            <i data-feather="home"></i>
+                            <span data-key="t-dashboard">Manage Staffs</span>
                         </a>
                     </li>
 
@@ -394,30 +406,30 @@
                     </li>
 
 
-{{--                    <li>--}}
-{{--                        <a href="javascript: void(0);" class="has-arrow">--}}
-{{--                            <i data-feather="grid"></i>--}}
-{{--                            <span data-key="t-apps">Apps</span>--}}
-{{--                        </a>--}}
-{{--                        <ul class="sub-menu" aria-expanded="false">--}}
+                    {{--                    <li>--}}
+                    {{--                        <a href="javascript: void(0);" class="has-arrow">--}}
+                    {{--                            <i data-feather="grid"></i>--}}
+                    {{--                            <span data-key="t-apps">Apps</span>--}}
+                    {{--                        </a>--}}
+                    {{--                        <ul class="sub-menu" aria-expanded="false">--}}
 
-{{--                            <li>--}}
-{{--                                <a href="apps-chat.html">--}}
-{{--                                    <span data-key="t-chat">Chat</span>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="apps-chat.html">--}}
+                    {{--                                    <span data-key="t-chat">Chat</span>--}}
+                    {{--                                </a>--}}
+                    {{--                            </li>--}}
 
-{{--                            <li>--}}
-{{--                                <a href="javascript: void(0);" class="has-arrow">--}}
-{{--                                    <span data-key="t-email">Email</span>--}}
-{{--                                </a>--}}
-{{--                                <ul class="sub-menu" aria-expanded="false">--}}
-{{--                                    <li><a href="apps-email-inbox.html" data-key="t-inbox">Inbox</a></li>--}}
-{{--                                    <li><a href="apps-email-read.html" data-key="t-read-email">Read Email</a></li>--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="javascript: void(0);" class="has-arrow">--}}
+                    {{--                                    <span data-key="t-email">Email</span>--}}
+                    {{--                                </a>--}}
+                    {{--                                <ul class="sub-menu" aria-expanded="false">--}}
+                    {{--                                    <li><a href="apps-email-inbox.html" data-key="t-inbox">Inbox</a></li>--}}
+                    {{--                                    <li><a href="apps-email-read.html" data-key="t-read-email">Read Email</a></li>--}}
+                    {{--                                </ul>--}}
+                    {{--                            </li>--}}
+                    {{--                        </ul>--}}
+                    {{--                    </li>--}}
 
                 </ul>
 
@@ -429,11 +441,11 @@
                                 <h5 class="alertcard-title font-size-16">Unlimited Access</h5>
                                 <p class="font-size-13">Upgrade your account by verifying your phone number.</p>
                                 <a href="{{ route('verify.phone') }}" class="btn btn-primary mt-2">Verify Phone Number</a>
-    {{--                            <a href="{{ route('verify.phone') }}" class="btn btn-primary mt-2" onclick="event.preventDefault();--}}
-    {{--                                                     document.getElementById('verify-phone').submit();">Verify Phone Number</a>--}}
-    {{--                            <form id="verify-phone" action="{{ route('verify.phone') }}" method="POST" class="d-none">--}}
-    {{--                                @csrf--}}
-    {{--                            </form>--}}
+                                {{--                            <a href="{{ route('verify.phone') }}" class="btn btn-primary mt-2" onclick="event.preventDefault();--}}
+                                {{--                                                     document.getElementById('verify-phone').submit();">Verify Phone Number</a>--}}
+                                {{--                            <form id="verify-phone" action="{{ route('verify.phone') }}" method="POST" class="d-none">--}}
+                                {{--                                @csrf--}}
+                                {{--                            </form>--}}
 
                             </div>
                         </div>
@@ -627,6 +639,13 @@
 <!-- Plugins js-->
 <script src="{{ asset('backend/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
 <script src="{{ asset('backend/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js') }}"></script>
+<!-- Required datatable js -->
+<script src="{{ asset('backend/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('backend/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Datatable init js -->
+<script src="{{ asset('backend/assets/js/pages/datatables.init.js') }}"></script>
+
 <!-- dashboard init -->
 <script src="{{ asset('backend/assets/js/pages/dashboard.init.js') }}"></script>
 

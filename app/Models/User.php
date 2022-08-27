@@ -18,11 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
-    ];
+    protected array $guarded = ['id', 'created_at', 'updated_at',];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -33,6 +29,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
 
     /**
      * The attributes that should be cast.
