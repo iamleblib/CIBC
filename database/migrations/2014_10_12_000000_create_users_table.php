@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('mobile')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('is_admin')->default(false);
+            $table->string('account_status')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
